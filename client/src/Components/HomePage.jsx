@@ -2,31 +2,38 @@ import React, { useState } from 'react';
 import { Typography, AppBar, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@material-ui/core';
 import { PhotoCamera } from '@material-ui/icons'
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import useStyles from './styles'
 import ImageList from './ImageList.jsx'
 
-function HomePage() {
-  const [photoList, setPhotoList] = useState([]);
-  const [displayPhotoList, setDisplayPhotoList] = useState([]);
+function HomePage({ photoList, setPhotoList, maxId, setMaxId, setView, setClickedCard }) {
+
+  const [displayPhotoList, setDisplayPhotoList] = useState(photoList);
+  const [text, setText] = useState("");
   const classes = useStyles();
 
   const handleSubmit = (e) => {
     const newPhotoURL = URL.createObjectURL(e.target.files[0]);
-    setPhotoList((prev) => ([...prev, newPhotoURL]));
-    setDisplayPhotoList((prev) => ([...prev, newPhotoURL]));
+    const newPhotoId = maxId + 1;
+    console.log("new photo id: " + newPhotoId);
+    const newPhoto = { src: newPhotoURL, text: text };
+    setPhotoList((prev) => {
+      return { ...prev, [newPhotoId]: newPhoto };
+    });
+    setDisplayPhotoList((prev) => {
+      return { ...prev, [newPhotoId]: newPhoto };
+    });
+    setMaxId((prev) => prev + 1);
+    setText("");
+  };
+
+  const handleTextChange = (e) => {
+    const newText = e.target.value;
+    setText(newText);
   };
 
   return (
     <>
-      <CssBaseline />
-      <AppBar position='relative'>
-        <Toolbar>
-          <PhotoCamera className={classes.icon} />
-          <Typography variant='h6'>
-            Photo Album
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <main>
         <div className={classes.container}>
           <Container maxWidth='lg'>
@@ -54,7 +61,10 @@ function HomePage() {
                     <input type="file" onChange={handleSubmit} hidden /> Add photo
                   </Button>
                 </Grid>
-                <ImageList displayPhotoList={displayPhotoList} />
+                <Grid item>
+                  <TextField onChange={handleTextChange} value={text} size="small" id="outlined-basic" label="Image Name" variant="outlined" />
+                </Grid>
+                <ImageList setClickedCard={setClickedCard} setView={setView} displayPhotoList={displayPhotoList} />
               </Grid>
             </div>
           </Container>

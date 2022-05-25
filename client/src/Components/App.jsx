@@ -8,15 +8,24 @@ import useStyles from './styles'
 function App() {
   const classes = useStyles();
   const [clickedCard, setClickedCard] = useState([])
+  const [view, setView] = useState('HomePage')
+  const [maxId, setMaxId] = useState(0);
+  const [photoList, setPhotoList] = useState({});
 
-  const renderView = (view) => {
+  const renderView = () => {
+    console.log('HIT RENDERVIEW')
     switch (view) {
       case "Description":
-        return <Description clickedCard={clickedCard} renderView={renderView} />
+        return <Description setView={setView} clickedCard={clickedCard} renderView={renderView} />;
       case "HomePage":
-        return <HomePage />
-      default:
-        return <HomePage />
+        return (<HomePage
+          photoList={photoList}
+          setPhotoList={setPhotoList}
+          maxId={maxId}
+          setMaxId={setMaxId}
+          setView={setView}
+          setClickedCard={setClickedCard} />
+        )
     }
   }
   return (
@@ -30,8 +39,7 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
-      {/* {renderView()} */}
-      <Description clickedCard={clickedCard} renderView={renderView} />
+      {renderView(view)}
     </div>
   )
 }
