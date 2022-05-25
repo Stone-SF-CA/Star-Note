@@ -9,20 +9,19 @@ export default function ImageList({displayPhotoList}) {
     
     return (
         <Grid container spacing={4}>
-            {displayPhotoList.map((photo)=>{
-                const text="To be updated";
+            {Object.keys(displayPhotoList).map((id)=>{
                 return (
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card onClick={()=>text="changed"} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                             <CardActionArea>
                             <CardMedia
                                 component="img"
                                 height="300"
-                                image={photo}
+                                image={displayPhotoList[id]['src']}
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                {text}
+                                {displayPhotoList[id]['text']}
                                 </Typography>
                             </CardContent>
                             </CardActionArea>
