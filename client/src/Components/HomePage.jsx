@@ -10,10 +10,10 @@ function HomePage() {
   const [displayPhotoList, setDisplayPhotoList] = useState([]);
   const classes = useStyles();
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     const newPhotoURL = URL.createObjectURL(e.target.files[0]);
-    setPhotoList((prev)=>([...prev, newPhotoURL]));
-    setDisplayPhotoList((prev)=>([...prev, newPhotoURL]));
+    setPhotoList((prev) => ([...prev, newPhotoURL]));
+    setDisplayPhotoList((prev) => ([...prev, newPhotoURL]));
   };
 
   return (
@@ -40,21 +40,21 @@ function HomePage() {
               <Grid container spacing={2} justify='center'>
                 <Grid item>
                   {
-                    (displayPhotoList.length===0) ?
-                    <Button variant='contained' color='primary' onClick={()=>setDisplayPhotoList(photoList)}>
-                      See my photos
-                    </Button> :
-                    <Button variant='contained' color='primary' onClick={()=>setDisplayPhotoList([])}>
-                      Hide my photos
-                    </Button>
+                    (displayPhotoList.length === 0) ?
+                      <Button variant='contained' color='primary' onClick={() => setDisplayPhotoList(photoList)}>
+                        See my photos
+                      </Button> :
+                      <Button variant='contained' color='primary' onClick={() => setDisplayPhotoList([])}>
+                        Hide my photos
+                      </Button>
                   }
                 </Grid>
                 <Grid item>
                   <Button variant='outlined' color='primary' component="label">
-                    <input type="file" onChange={handleSubmit} hidden/> Add photo
+                    <input type="file" onChange={handleSubmit} hidden /> Add photo
                   </Button>
                 </Grid>
-                <ImageList displayPhotoList={displayPhotoList}/>
+                <ImageList displayPhotoList={displayPhotoList} />
               </Grid>
             </div>
           </Container>
