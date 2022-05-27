@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Id is somehow changing in twostepdelete",
+    "summary": "To fix this problem, either pass a copy of an object as a prop, OR a primary type property of the object",
+    "description": "When passed an object reference, if the back gets rerendered, the thing you are getting will be always set to the last item in the card array. thats why only the last item gets deleted. To fix this problem, either pass a copy of an object as a prop, OR a primary type property of the object",
+    "photos": [
+      "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653524638/pg8os6rqbqoqf2qgofnu.png"
+    ],
+    "notebookId": "628ffddeead7846a581a8161"
+  },
+  {
+    "title": "Page wont update right away after editing",
+    "summary": "Created a useEffect in description to update the page right after a change",
+    "description": "After I hit submit when finished editing, i render back to my descriptions page. However, I dont see the change i've made right away. Before, I only had a useEffect in my main entries page which is updating correctly. so I used the same logic for the descriptions page. The I used a useEffect render the changes right away and put the hook that i set into the [] so it forces useEffect to run. Now the info is updating",
+    "photos": [
+      "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653579936/cnlkacvavojoy6t2alns.png"
+    ],
+    "notebookId": "628ffddeead7846a581a8161"
+  },
+  {
+    "title": "Looping with async await : getting {}",
+    "summary": ".map() is NOT async aware. USE a for loop",
+    "description": "After I hit submit when finished editing, i render back to my descriptions page. However, I dont see the change i've made right away. Before, I only had a useEffect in my main entries page which is updating correctly. so I used the same logic for the descriptions page. The I used a useEffect render the changes right away and put the hook that i set into the [] so it forces useEffect to run. Now the info is updating",
+    "photos": [
+      "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653607524/h0zljovg46p2yuevdivo.png",
+      "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653607529/mjjtpbjfamsxspt5a1v1.png"
+    ],
+    "notebookId": "628ffddeead7846a581a8161"
+  },
+  {
+    "title": "notebook 2",
+    "summary": "Cutie",
+    "description": "lsdjf as;dlfja;ldjfl;akdjfjf;lakjf;lsadjf;lakjf",
+    "photos": [
+      "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653359909/xgqbvyx5mbsubqzgjv6c.jpg",
+      "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653427509/l4jevpw2dahj41dgsf4t.jpg"
+    ],
+    "notebookId": "628ffdecead7846a581a8166"
+  },
+  {
+    "title": "notebook 2",
+    "summary": "Cutie",
+    "description": "lsdjf as;dlfja;ldjfl;akdjfjf;lakjf;lsadjf;lakjf",
+    "photos": [
+      "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653359909/xgqbvyx5mbsubqzgjv6c.jpg",
+      "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653427509/l4jevpw2dahj41dgsf4t.jpg"
+    ],
+    "notebookId": "628ffdecead7846a581a8166"
+  }
+]

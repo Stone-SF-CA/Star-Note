@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core/styles'
 //useStyles here is a hook
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6)
+    backgroundColor: theme.palette.primary,
+    padding: '6px 0px 46px'
   },
   icon: {
     marginRight: '20px',
