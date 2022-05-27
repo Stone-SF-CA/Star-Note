@@ -11,20 +11,20 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const customTheme = createTheme({
   palette: {
     primary: {
-      light: '#11cb5f',
-      main: '#11cb5f',
-      dark: '#11cb5f',
+      light: '#03a9f4',
+      main: '#1976d2',
+      dark: '#3f51b5',
       contrastText: "#fff"
     },
     secondary: {
-      light: '#11cb5f',
-      main: '#11cb5f',
-      dark: '#11cb5f',
+      light: '#ffea00',
+      main: 'f50057',
+      dark: '#ff1744',
       contrastText: '#11cb5f'
     }
   }
 });
-function NotebookApp({ selectedNB, setMainView }) {
+function NotebookApp({ setNeedRender, selectedNB, setMainView }) {
   const classes = useStyles();
   const [clickedCard, setClickedCard] = useState([])
   const [view, setView] = useState('Notebook')
@@ -36,10 +36,11 @@ function NotebookApp({ selectedNB, setMainView }) {
 
 
   useEffect(() => {
-    getEntries({ notebookId: selectedNB })
+    getEntries({ notebookId: selectedNB._id })
       .then(data => {
         setCardList(data.data)
         setDisplayCardList(data.data)
+        setNeedRender(prev => !prev)
       })
       .catch(err => console.log(err))
   }, [open, tyPage, view])
@@ -49,6 +50,7 @@ function NotebookApp({ selectedNB, setMainView }) {
         return <Description setOpen={setOpen} setView={setView} clickedCard={clickedCard} renderView={renderView} />;
       case "Notebook":
         return (<Notebook
+          selectedNB={selectedNB}
           open={open}
           setOpen={setOpen}
           tyPage={tyPage}
@@ -65,9 +67,11 @@ function NotebookApp({ selectedNB, setMainView }) {
     }
   }
   return (
-    <ThemeProvider theme={customTheme}>
-      {renderView(view)}
-    </ThemeProvider>
+    <div >
+      <ThemeProvider theme={customTheme}>
+        {renderView(view)}
+      </ThemeProvider>
+    </div>
   )
 }
 

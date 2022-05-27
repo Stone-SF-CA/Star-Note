@@ -7,44 +7,28 @@ import useStyles from './styles'
 import CardList from './CardList.jsx'
 import CreateEntry from './CreateEntry/CreateEntry.jsx'
 
-function Notebook({ open, setOpen, tyPage, setTyPage, displayCardList, setDisplayCardList, cardList, setCardList, maxId, setMaxId, setView, setClickedCard }) {
+function Notebook({ selectedNB, open, setOpen, tyPage, setTyPage, displayCardList, setDisplayCardList, cardList, setCardList, maxId, setMaxId, setView, setClickedCard }) {
   const classes = useStyles();
 
   return (
     <>
       <main>
-        <div className={classes.container}>
-          <Container maxWidth='lg'>
-            <CreateEntry open={open} setOpen={setOpen} tyPage={tyPage} setTyPage={setTyPage} />
+        <div className={classes.container} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ width: '90%', marginTop: '50px', paddingTop: '80px', paddingLeft: '10%', paddingRight: '10%', background: '#fafafa', position: 'fixed', zIndex: '1' }}>
             <Typography variant='h2' align='center' color='textPrimary' gutterBottom>
-              Notebook
+              {selectedNB.title}
             </Typography>
             <Typography variant='h5' align='center' color='textSecondary' paragraph>
-              Hello everyone, this is a notebook!!!
+              {selectedNB.description}
             </Typography>
-            <div className={classes.buttons}>
-              <Grid container spacing={2} justify='center'>
-                {/* <Grid item>
-                  {
-                    (displayCardList.length === 0) ?
-                      <Button variant='contained' color='primary' onClick={() => setDisplayCardList(cardList)}>
-                        See my photos
-                      </Button> :
-                      <Button variant='contained' color='primary' onClick={() => setDisplayCardList([])}>
-                        Hide my photos
-                      </Button>
-                  }
-                </Grid> */}
-                <CardList open={open} setOpen={setOpen} setClickedCard={setClickedCard} setView={setView} displayCardList={displayCardList} />
-              </Grid>
+            <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
+              <CreateEntry selectedNB={selectedNB} open={open} setOpen={setOpen} tyPage={tyPage} setTyPage={setTyPage} />
             </div>
+          </div>
+          <Container style={{ marginTop: '20%' }} maxWidth='lg'>
+            <CardList open={open} setOpen={setOpen} setClickedCard={setClickedCard} setView={setView} displayCardList={displayCardList} />
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth='md'>
-          <Grid>
-
-          </Grid>
-        </Container>
       </main>
     </>
   );

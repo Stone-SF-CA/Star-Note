@@ -7,7 +7,8 @@ import { DescriptCard } from '../styledComps.js'
 import Carousel from 'react-material-ui-carousel'
 import Box from '@mui/material/Box';
 import EditMode from './EditMode.jsx'
-
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 
 function Description({ setView, setOpen, clickedCard, renderView }) {
   const [editing, setEditing] = useState(false);
@@ -23,7 +24,7 @@ function Description({ setView, setOpen, clickedCard, renderView }) {
   return (
     <div>
       <br />
-      <div style={{ marginTop: '30px' }}>
+      <div style={{ marginTop: '100px' }}>
         <Typography align='center' component="div" gutterBottom>
           <Box sx={{ fontWeight: 'bold', m: 1, fontSize: 25 }}>{editedCard.title}</Box>
         </Typography>
@@ -34,6 +35,15 @@ function Description({ setView, setOpen, clickedCard, renderView }) {
         </div>
         <DescriptCard>
           <br />
+          <div style={{ flexDirection: 'row-reverse', display: 'flex' }}>
+            <IconButton onClick={() => setEditing(true)} aria-label="settings">
+              <EditIcon fontSize='medium' />
+            </IconButton>
+          </div>
+          {/* <div style={{ display: 'flex', flexDirection: 'column', marginTop: '40px' }}>
+            <Button onClick={() => setEditing(true)} color='primary'>Edit Entry</Button>
+          </div> */}
+
           <Carousel>
             {editedCard.photos.map(t => (<CardMedia
               component="img"
@@ -46,27 +56,14 @@ function Description({ setView, setOpen, clickedCard, renderView }) {
             <Box sx={{ fontWeight: 'medium', m: 1, fontSize: 20 }}>{editedCard.summary}</Box>
           </Typography>
           <br />
-          <Typography align='center' component="div" gutterBottom>
+          <Typography style={{ paddingBottom: '100px' }} align='center' component="div" gutterBottom>
             <Box sx={{ fontWeight: 'light', m: 1, fontSize: 16 }}>{editedCard.description}</Box>
           </Typography>
           <br />
-          <div style={{ display: 'flex', flexDirection: 'column', marginTop: '40px' }}>
-            <Button onClick={() => setEditing(true)} color='primary'>Edit Entry</Button>
-          </div>
         </DescriptCard>
-        <div></div>
       </Container>
     </div >
   )
 }
 
 export default Description;
-
-//
-// each photo = {
-//   0: {
-//     src: ------,
-//   text: ------,
-//     description: ---,
-//   }
-// }

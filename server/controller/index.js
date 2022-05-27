@@ -17,9 +17,14 @@ module.exports = {
       .catch(err => console.log(err))
   },
   delete: function (req, res) {
-    console.log('REq.query._id: ', req.query._id)
     db.del(req.query._id)
       .then(data => res.send(data))
+      .catch(err => console.log(err))
+  },
+  deleteAll: function (req, res) {
+    console.log('hit deleteAll, ', req.query.notebookId)
+    db.deleteAllEntriesInANotebook(req.query.notebookId)
+      .then(data => res.send('Deleted all entries for that notebook:'))
       .catch(err => console.log(err))
   },
   getNotebooks: function (req, res) {
@@ -38,9 +43,8 @@ module.exports = {
       .catch(err => console.log(err))
   },
   deleteNotebook: function (req, res) {
-    console.log('REq.query._id: ', req.query._id)
     db.delNotebook(req.query._id)
-      .then(data => res.send(data))
+      .then(data => console.log('Hit delete notebook'))
       .catch(err => console.log(err))
   },
 }

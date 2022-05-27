@@ -2,7 +2,6 @@ const axios = require('axios');
 
 module.exports = {
   getEntries: function (obj) {
-    console.log(obj)
     return axios.get('/entries?', { params: obj })
       .then(data => {
         return data
@@ -24,6 +23,12 @@ module.exports = {
       .then(data => this.getEntries())
       .catch(err => console.log(err))
   },
+  delAllEntries: function (obj) {
+    console.log('delAllEntries. should be notebookId:id', obj)
+    return axios.delete('/allentries?', { params: obj })
+      .then(data => this.getEntries())
+      .catch(err => console.log(err))
+  },
   getNotebooks: function () {
     return axios.get('/notebooks')
       .then(data => {
@@ -33,17 +38,18 @@ module.exports = {
   },
   postNotebook: function (obj) {
     return axios.post('/notebooks', obj)
-      .then(data => this.getEntries())
+      .then(data => this.getNotebooks())
       .catch(err => console.log(err))
   },
   editNotebook: function (obj) {
     return axios.put('/notebooks', obj)
-      .then(data => this.getEntries())
+      .then(data => this.getNotebooks())
       .catch(err => console.log(err))
   },
   delNotebook: function (obj) {
+    console.log('delNotebook. should be _id:id', obj)
     return axios.delete('/notebooks?', { params: obj })
-      .then(data => this.getEntries())
+      .then(data => this.getNotebooks())
       .catch(err => console.log(err))
   },
 }

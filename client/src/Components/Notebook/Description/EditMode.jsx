@@ -11,6 +11,8 @@ import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import api from '../../../../API';
 import axios from 'axios'
+import EditIcon from '@mui/icons-material/Edit';
+
 
 export default function EditMode({ setEditedCard, setEditing, setView, setOpen, clickedCard }) {
   const [formValues, setFormValues] = useState(clickedCard)
@@ -37,6 +39,7 @@ export default function EditMode({ setEditedCard, setEditing, setView, setOpen, 
       description: e.target[3].value,
       photos: cloud,
     }
+    console.log("after edit submit: ", obj)
 
     api.editEntry(obj)
       .then(data => {
@@ -54,7 +57,7 @@ export default function EditMode({ setEditedCard, setEditing, setView, setOpen, 
       <form onSubmit={handleSubmit}>
         <Grid container alignItems="center" justify="center" direction="column">
           <br />
-          <Typography variant='h2' align='center' color='textPrimary' gutterBottom>
+          <Typography style={{ marginTop: '100px' }} variant='h2' align='center' color='textPrimary' gutterBottom>
             Editing Entry
           </Typography>
           <FormControl fullWidth sx={{ m: 1 }} variant="standard">
@@ -71,7 +74,7 @@ export default function EditMode({ setEditedCard, setEditing, setView, setOpen, 
               label="Summary"
               multiline
               rows={2}
-              defaultValue={clickedCard.description}
+              defaultValue={clickedCard.summary}
               variant='outlined'
             />
           </FormControl>

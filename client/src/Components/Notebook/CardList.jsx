@@ -14,6 +14,7 @@ export default function CardList({ open, setOpen, setView, setClickedCard, displ
                 return (
                     <Grid item xs={12} sm={6} md={4}>
                         <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                            <br />
                             <CardHeader
                                 action={
                                     <TwoStepDelete open={open} setOpen={setOpen} id={card._id} setView={setView} />

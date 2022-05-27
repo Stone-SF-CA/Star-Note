@@ -35,8 +35,13 @@ module.exports = {
     return Entry.findOneAndUpdate({ _id: obj._id }, obj)
   },
   del: function (id) {
-    console.log('BACKEND ID: ', id)
     return Entry.deleteOne({ _id: id })
+  },
+  deleteAllEntriesInANotebook: function (id) {
+    return Entry.deleteMany({ notebookId: id })
+  },
+  deleteAllEntries: function () {
+    return Entry.deleteMany({})
   },
   getAllNotebooks: function () {
     return Notebook.find({}).sort({ date: -1 })
@@ -48,7 +53,6 @@ module.exports = {
     return Notebook.findOneAndUpdate({ _id: obj._id }, obj)
   },
   delNotebook: function (id) {
-    console.log('BACKEND ID: ', id)
     return Notebook.deleteOne({ _id: id })
   },
 }

@@ -14,6 +14,7 @@ app.get('/entries', controller.get);
 app.post('/entries', controller.post);
 app.put('/entries', controller.put);
 app.delete('/entries', controller.delete);
+app.delete('/allentries', controller.deleteAll)
 
 app.use(express.static('client/dist'));
 app.listen(3000);

@@ -18,7 +18,7 @@ const defaultValues = {
   summary: 0,
   description: " ",
 };
-export default function EntryForm({ setTyPage }) {
+export default function EntryForm({ selectedNB, setTyPage }) {
   const [formValues, setFormValues] = useState(defaultValues)
   const [cloud, setCloud] = useState([])
 
@@ -41,6 +41,7 @@ export default function EntryForm({ setTyPage }) {
       summary: e.target[1].value,
       description: e.target[3].value,
       photos: cloud,
+      notebookId: selectedNB._id
     }
 
     api.postEntry(obj)

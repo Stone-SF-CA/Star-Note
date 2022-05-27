@@ -19,7 +19,7 @@ const style = {
   p: 4,
 };
 
-export default function CreateEntry({ tyPage, setTyPage }) {
+export default function CreateEntry({ selectedNB, tyPage, setTyPage }) {
   const [openE, setOpenE] = useState(false)
   const handleOpen = () => setOpenE(true);
   const handleClose = () => {
@@ -29,7 +29,7 @@ export default function CreateEntry({ tyPage, setTyPage }) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen} variant='outlined'>Add Post</Button>
       <Modal
         open={openE}
         onClose={handleClose}
@@ -39,7 +39,7 @@ export default function CreateEntry({ tyPage, setTyPage }) {
         <Box sx={style}>
           {tyPage ?
             <EntForm ><Typography variant='h1' align='center' color='textPrimary'>Entry Submitted!</Typography> </EntForm >
-            : <EntryForm setTyPage={setTyPage} />}
+            : <EntryForm selectedNB={selectedNB} setTyPage={setTyPage} />}
         </Box>
       </Modal>
     </div>

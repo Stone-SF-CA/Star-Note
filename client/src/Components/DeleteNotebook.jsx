@@ -5,10 +5,9 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { EntForm } from '../styledComps.js';
 import IconButton from '@mui/material/IconButton';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import api from '../../../../API'
+import api from '../../API'
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const style = {
   position: 'absolute',
@@ -25,7 +24,7 @@ const style = {
   p: 4,
 };
 
-export default function TwoStepDelete({ setOpen, id }) {
+export default function DeleteNotebook({ setNeedRender, entryCount, title, id }) {
   const [openT, setOpenT] = useState(false)
   const handleOpen = () => {
     setOpenT(true)
@@ -33,20 +32,19 @@ export default function TwoStepDelete({ setOpen, id }) {
   const handleClose = () => {
     setOpenT(false)
   };
-  const handleClick = () => {
-    api.delEntry({ _id: id })
-      .then((data) => {
-        console.log('Success!')
-        setOpenT(false)
-        setOpen((prev) => !prev)
-      })
-      .catch(err => console.log(err))
+  const handleClick = async () => {
+    console.log(id, title)
+    await api.delAllEntries({ notebookId: id })
+    console.log('hi?')
+    api.delNotebook({ _id: id })
+    setOpenT(false)
+    setNeedRender(prev => !prev)
   }
 
   return (
     <div>
-      <IconButton onClick={handleOpen} aria-label="settings">
-        <HighlightOffIcon />
+      <IconButton onClick={handleOpen} style={{ color: '#fff' }} aria-label="settings">
+        <DeleteIcon fontSize='medium' />
       </IconButton>
       <Modal
         open={openT}
@@ -55,7 +53,7 @@ export default function TwoStepDelete({ setOpen, id }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography align='center' variant="h6" component="div">Are you sure you want to delete this card?</Typography>
+          <Typography align='center' variant="h6" component="div">Are you sure you want to delete <b><u>{title}</u></b> and its <b>{entryCount[id]}</b> entries?</Typography>
           <br />
           <ButtonGroup align='center' variant="contained" aria-label="outlined primary button group">
             <Button onClick={handleClose} variant='outlined'>No</Button>
