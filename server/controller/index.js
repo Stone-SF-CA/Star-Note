@@ -38,6 +38,7 @@ module.exports = {
       .catch(err => console.log(err))
   },
   putNotebook: function (req, res) {
+    console.log('HIT PUT NOTEBOOK:', req.body)
     db.editNotebook(req.body)
       .then(data => res.send(data))
       .catch(err => console.log(err))

@@ -35,13 +35,19 @@ export default function EditNotebook({ setNeedRender, entryCount, title, id, des
   const handleClose = () => {
     setOpenT(false)
   };
-  const handleClick = async () => {
-    console.log(id, title)
-    // await api.delAllEntries({ notebookId: id })
-    // console.log('hi?')
-    // api.delNotebook({ _id: id })
-    // setOpenT(false)
-    // setNeedRender(prev => !prev)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log("EDIT NOTEBOOK: ", id, title, description)
+    let editedObj = {
+      _id: id,
+      title: e.target[0].value,
+      description: e.target[1].value
+    }
+    console.log('AFTER EDIT: ', editedObj)
+    await api.editNotebook(editedObj)
+    console.log('hi?')
+    setOpenT(false)
+    setNeedRender(prev => !prev)
   }
 
   return (
@@ -55,32 +61,36 @@ export default function EditNotebook({ setNeedRender, entryCount, title, id, des
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <FormControl style={{ color: '#fff' }} fullWidth sx={{ m: 1 }} variant="standard">
-            <TextField
-              required
-              helperText="Please enter a notebook name"
-              id="demo-helper-text-aligned"
-              label="Notebook Name"
-              defaultValue={title}
-            />
-          </FormControl>
-          <br />
-          <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-            <TextField
-              id="outlined-multiline-static"
-              label="Description"
-              multiline
-              rows={3}
-              variant='outlined'
-              defaultValue={description}
-            />
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <Box sx={style}>
+            <Typography variant='h5' align='center'>Edit Notebook</Typography>
             <br />
-          </FormControl>
-          <IconButton type="submit" style={{ color: '#2e7d32' }} aria-label="settings">
-            <AddTaskIcon fontSize='large' />
-          </IconButton>
-        </Box>
+            <FormControl style={{ color: '#fff' }} fullWidth sx={{ m: 1 }} variant="standard">
+              <TextField
+                required
+                helperText="Please enter a notebook name"
+                id="demo-helper-text-aligned"
+                label="Notebook Name"
+                defaultValue={title}
+              />
+            </FormControl>
+            <br />
+            <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+              <TextField
+                id="outlined-multiline-static"
+                label="Description"
+                multiline
+                rows={3}
+                variant='outlined'
+                defaultValue={description}
+              />
+              <br />
+            </FormControl>
+            <IconButton type="submit" style={{ color: '#2e7d32' }} aria-label="settings">
+              <AddTaskIcon fontSize='large' />
+            </IconButton>
+          </Box>
+        </form>
       </Modal>
     </div >
   );
