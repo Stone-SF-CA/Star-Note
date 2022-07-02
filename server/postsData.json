@@ -6,7 +6,7 @@
     "photos": [
       "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653524638/pg8os6rqbqoqf2qgofnu.png"
     ],
-    "notebookId": "628ffddeead7846a581a8161"
+    "notebookId": "62916a7e519f56b61028a52c"
   },
   {
     "title": "Page wont update right away after editing",
@@ -15,7 +15,7 @@
     "photos": [
       "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653579936/cnlkacvavojoy6t2alns.png"
     ],
-    "notebookId": "628ffddeead7846a581a8161"
+    "notebookId": "62916a7e519f56b61028a52c"
   },
   {
     "title": "Looping with async await : getting {}",
@@ -25,7 +25,7 @@
       "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653607524/h0zljovg46p2yuevdivo.png",
       "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653607529/mjjtpbjfamsxspt5a1v1.png"
     ],
-    "notebookId": "628ffddeead7846a581a8161"
+    "notebookId": "62916a7e519f56b61028a52c"
   },
   {
     "title": "notebook 2",
@@ -35,7 +35,7 @@
       "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653359909/xgqbvyx5mbsubqzgjv6c.jpg",
       "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653427509/l4jevpw2dahj41dgsf4t.jpg"
     ],
-    "notebookId": "628ffdecead7846a581a8166"
+    "notebookId": "62917c2c1dc63557a08ccd6f"
   },
   {
     "title": "notebook 2",
@@ -45,6 +45,6 @@
       "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653359909/xgqbvyx5mbsubqzgjv6c.jpg",
       "https://res.cloudinary.com/djtk4ap6i/image/upload/v1653427509/l4jevpw2dahj41dgsf4t.jpg"
     ],
-    "notebookId": "628ffdecead7846a581a8166"
+    "notebookId": "62917c2c1dc63557a08ccd6f"
   }
 ]

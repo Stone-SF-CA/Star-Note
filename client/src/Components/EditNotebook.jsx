@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react'
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
@@ -11,23 +9,16 @@ import EditIcon from '@mui/icons-material/Edit';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
+import { RadioButton } from './Notebook/styledComps.js'
+import useStyles from './Notebook/styles'
 
-const style = {
-  position: 'absolute',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '40%',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+export default function EditNotebook({ notebook, setNeedRender, entryCount }) {
+  let classes = useStyles()
+  let { title, description, color, starred } = notebook
+  let id = notebook._id
+  //blue, red, orange, purple,green
+  let colors = ['#2196f3', '#f50057', '#ff9800', '#d500f9', '#4caf50']
 
-export default function EditNotebook({ setNeedRender, entryCount, title, id, description }) {
   const [openT, setOpenT] = useState(false)
   const handleOpen = () => {
     setOpenT(true)
@@ -37,15 +28,22 @@ export default function EditNotebook({ setNeedRender, entryCount, title, id, des
   };
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("EDIT NOTEBOOK: ", id, title, description)
+    let nList = []
+    let list = document.getElementsByName('colorPicker')
+    for (let i = 0; i < list.length; i++) {
+      nList.push(list[i].checked)
+    }
+
+    let index = nList.indexOf(true)
+
     let editedObj = {
       _id: id,
       title: e.target[0].value,
-      description: e.target[1].value
+      description: e.target[1].value,
+      color: index > -1 ? colors[index] : '#2196f3',
+      starred: starred
     }
-    console.log('AFTER EDIT: ', editedObj)
     await api.editNotebook(editedObj)
-    console.log('hi?')
     setOpenT(false)
     setNeedRender(prev => !prev)
   }
@@ -62,7 +60,7 @@ export default function EditNotebook({ setNeedRender, entryCount, title, id, des
         aria-describedby="modal-modal-description"
       >
         <form onSubmit={(e) => handleSubmit(e)}>
-          <Box sx={style}>
+          <Box className={classes.editNotebookBox}>
             <Typography variant='h5' align='center'>Edit Notebook</Typography>
             <br />
             <FormControl style={{ color: '#fff' }} fullWidth sx={{ m: 1 }} variant="standard">
@@ -86,6 +84,17 @@ export default function EditNotebook({ setNeedRender, entryCount, title, id, des
               />
               <br />
             </FormControl>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '70%' }}>
+              {
+                colors.map(colort => {
+                  return (
+                    <RadioButton name='colorPicker' color={colort} defaultChecked={colort === color} />
+                  )
+                })
+              }
+            </div>
+            <br />
+            <br />
             <IconButton type="submit" style={{ color: '#2e7d32' }} aria-label="settings">
               <AddTaskIcon fontSize='large' />
             </IconButton>

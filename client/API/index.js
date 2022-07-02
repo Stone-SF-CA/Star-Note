@@ -23,6 +23,12 @@ module.exports = {
       .then(data => this.getEntries())
       .catch(err => console.log(err))
   },
+  delSelectedEntries: function (obj) {
+    console.log('delAllEntries. should be notebookId:id', obj)
+    return axios.delete('/selectedentries?', { params: obj })
+      .then(data => this.getEntries())
+      .catch(err => console.log(err))
+  },
   delAllEntries: function (obj) {
     console.log('delAllEntries. should be notebookId:id', obj)
     return axios.delete('/allentries?', { params: obj })
@@ -47,8 +53,12 @@ module.exports = {
       .catch(err => console.log(err))
   },
   delNotebook: function (obj) {
-    console.log('delNotebook. should be _id:id', obj)
     return axios.delete('/notebooks?', { params: obj })
+      .then(data => this.getNotebooks())
+      .catch(err => console.log(err))
+  },
+  moveSelectedEntries: function (obj) {
+    return axios.put('/moveSelectedNbs', obj)
       .then(data => this.getNotebooks())
       .catch(err => console.log(err))
   },

@@ -16,7 +16,6 @@ function Description({ setView, setOpen, clickedCard, renderView }) {
   const classes = useStyles();
 
   useEffect(() => {
-    console.log('hi', editedCard)
   }, [editing])
   if (editing) {
     return (<EditMode setEditedCard={setEditedCard} setEditing={setEditing} setView={setView} setOpen={setOpen} clickedCard={clickedCard} />)
@@ -40,10 +39,6 @@ function Description({ setView, setOpen, clickedCard, renderView }) {
               <EditIcon fontSize='medium' />
             </IconButton>
           </div>
-          {/* <div style={{ display: 'flex', flexDirection: 'column', marginTop: '40px' }}>
-            <Button onClick={() => setEditing(true)} color='primary'>Edit Entry</Button>
-          </div> */}
-
           <Carousel>
             {editedCard.photos.map(t => (<CardMedia
               component="img"
@@ -57,7 +52,7 @@ function Description({ setView, setOpen, clickedCard, renderView }) {
           </Typography>
           <br />
           <Typography style={{ paddingBottom: '100px' }} align='center' component="div" gutterBottom>
-            <Box sx={{ fontWeight: 'light', m: 1, fontSize: 16 }}>{editedCard.description}</Box>
+            <Box sx={{ fontWeight: 'light', m: 1, fontSize: 16, whiteSpace: 'pre-wrap' }}>{editedCard.description}</Box>
           </Typography>
           <br />
         </DescriptCard>
