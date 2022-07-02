@@ -16,5 +16,14 @@ app.put('/entries', controller.put);
 app.delete('/entries', controller.delete);
 app.delete('/allentries', controller.deleteAll)
 
+app.delete('/selectedentries', controller.deleteSelected)
+app.put('/moveSelectedNbs', controller.moveSelected)
+
+app.get('/login', (req, res) => {
+  res.send('login')
+})
 app.use(express.static('client/dist'));
 app.listen(3000);
+
+
+

@@ -39,7 +39,6 @@ export default function EditMode({ setEditedCard, setEditing, setView, setOpen, 
       description: e.target[3].value,
       photos: cloud,
     }
-    console.log("after edit submit: ", obj)
 
     api.editEntry(obj)
       .then(data => {
